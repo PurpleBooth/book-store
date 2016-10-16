@@ -1,0 +1,6 @@
+preset: recommended
+finder:
+  not-path:
+    - "vendor"
+    - "var"
+    - "generated"

@@ -1,0 +1,135 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Demo Book System",
+    "description": "A system for retrieving and storing books",
+    "version": "v0.1.0"
+  },
+  "paths": {
+    "/book/{id}": {
+      "get": {
+        "operationId": "getBook",
+        "summary": "Retrieve a book",
+        "description": "Get a single book",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Book Id.",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Books"
+        ],
+        "responses": {
+          "200": {
+            "description": "The retrieved book",
+            "schema": {
+              "$ref": "#/definitions/StoredBook"
+            }
+          }
+        }
+      }
+    },
+    "/book": {
+      "post": {
+        "operationId": "createBook",
+        "summary": "Create a book",
+        "description": "This will cause a new book to exist, that can be retrieved by the get method",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Book Object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        ],
+        "tags": [
+          "Books"
+        ],
+        "responses": {
+          "201": {
+            "description": "The created book",
+            "schema": {
+              "$ref": "#/definitions/StoredBook"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "StoredBook": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "the books Id"
+        },
+        "isbn": {
+          "type": "string",
+          "description": "The International Standard Book Number (ISBN) is a unique numeric commercial book identifier."
+        },
+        "author": {
+          "type": "string",
+          "description": "Author of the book."
+        },
+        "rrp": {
+          "type": "number",
+          "format": "float",
+          "description": "Recommended Retail Price in GBP"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the book."
+        },
+        "description": {
+          "type": "string",
+          "description": "The blurb and the the description of the book."
+        }
+      }
+    },
+    "Book": {
+      "type": "object",
+      "properties": {
+        "isbn": {
+          "type": "string",
+          "description": "The International Standard Book Number (ISBN) is a unique numeric commercial book identifier."
+        },
+        "author": {
+          "type": "string",
+          "description": "Author of the book."
+        },
+        "rrp": {
+          "type": "number",
+          "format": "float",
+          "description": "Recommended Retail Price in GBP"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the book."
+        },
+        "description": {
+          "type": "string",
+          "description": "The blurb and the the description of the book."
+        }
+      }
+    }
+  }
+}
